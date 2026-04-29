@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+<title>Exclusivo para você</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23090b1a'/%3E%3Cpath d='M32 10 L37.4 24.2 L52 24.8 L40.6 33.8 L44.6 48 L32 39.6 L19.4 48 L23.4 33.8 L12 24.8 L26.6 24.2 Z' fill='%23f59e0b' stroke='%23fff3c4' stroke-width='1.6' stroke-linejoin='round'/%3E%3Ccircle cx='49' cy='15' r='2.2' fill='white' opacity='0.85'/%3E%3Ccircle cx='15' cy='18' r='1.4' fill='%23c4b5fd' opacity='0.8'/%3E%3Ccircle cx='17' cy='47' r='1.8' fill='%23f9a8d4' opacity='0.8'/%3E%3C/svg%3E" />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@400;500;600&family=Dancing+Script:wght@700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<div class="bg-color" id="bgColor"></div>
+<div class="scroll-progress" id="scrollProgress"></div>
+<div class="floating-hearts" id="hearts"></div>
+<button class="scroll-top" id="scrollTop" aria-label="Voltar ao topo">↑</button>
+
+<!-- ===== HERO ===== -->
+<section id="hero" data-bg="#0a0f1e">
+  <div class="hero-stage">
+    <div class="stars" id="stars"></div>
+    <canvas id="waveCanvas" class="wave-canvas"></canvas>
+    <div class="shooting-stars" id="shootingStars"></div>
+
+  <div class="content">
+    <div class="hero-top reveal">
+      <div class="tag">
+        <span class="tag-dot"></span>
+        <span>⛵ Bora navegar comigo</span>
+      </div>
+      <div class="hero-sticker reveal-zoom" id="heroSticker">
+        <span>Selo</span>
+        <span>de</span>
+        <span>Amor da Minha vida</span>
+        <span>💜</span>
+      </div>
+    </div>
+
+    <h1 class="hero-title reveal">
+      <span class="hero-line">Com você,</span>
+      <span class="hero-line hero-line-main">até a <span class="highlight">maré mais funda</span></span>
+      <span class="hero-line">é tranquila</span>
+    </h1>
+
+    <p class="subtitle reveal">Esse barquinho de papel vai pra qualquer lugar, desde que seja do seu lado. (Pegou a ref? kkkk) </p>
+
+    <div class="boat-wrapper reveal-zoom" id="boat">
+      <div class="boat-inner">
+        <svg viewBox="0 0 160 140" xmlns="http://www.w3.org/2000/svg">
+          <polygon points="22,98 138,98 118,118 42,118" fill="#15803d"/>
+          <polygon points="20,95 140,95 120,115 40,115" fill="#22c55e"/>
+          <line x1="30" y1="105" x2="130" y2="105" stroke="#15803d" stroke-width="1" opacity="0.4"/>
+          <polygon points="80,18 80,90 25,90" fill="#f8fafc" opacity="0.95"/>
+          <polygon points="80,28 80,90 120,80" fill="#cbd5e1" opacity="0.85"/>
+          <line x1="80" y1="8" x2="80" y2="95" stroke="#64748b" stroke-width="2.5"/>
+          <polygon points="80,8 80,28 100,18" fill="#ef4444"/>
+          <text x="55" y="65" font-size="14" fill="#ec4899">♥</text>
+        </svg>
+      </div>
+    </div>
+
+    <p class="hero-touch-hint reveal">toca no barquinho ou no fundo ✨</p>
+
+    <div class="hero-rotator reveal" id="heroRotator">
+      <div class="rotator-prefix">você é</div>
+      <div class="rotator-text" id="rotatorText">a melhor parte do meu dia</div>
+    </div>
+
+
+    <button class="cta-btn reveal" id="ctaBtn">
+      <span class="cta-text">começar nossa história</span>
+      <span class="cta-arrow">→</span>
+    </button>
+  </div>
+
+  <div class="scroll-hint"><span>role para baixo</span><span>↓</span></div>
+  </div>
+</section>
+
+<!-- ===== MEMORY ===== -->
+<section id="memory" data-bg="#0e0e18">
+  <div class="header-center">
+    <div class="tag reveal">✦ JOGO DA MEMÓRIA</div>
+    <h1 class="reveal">Por que eu sou <span>feliz do seu lado</span></h1>
+    <p class="subtitle reveal">Encontre os pares e descubra cada motivo 💜</p>
+  </div>
+  <div class="mem-stats reveal">
+    <span>Tentativas: <b id="memMoves">0</b></span>
+    <span>Pares: <b id="memPairsFound">0</b>/6</span>
+  </div>
+  <div id="memoryGame" class="reveal-zoom"><div class="memory-grid" id="memGrid"></div></div>
+  <div class="mem-win" id="memWin">
+    <div class="mem-win-dialog">
+      <div class="trophy">🎉</div>
+      <h2>Você encontrou tudo!</h2>
+      <p>Assim como eu te encontrei ✨</p>
+      <button class="btn-replay" onclick="initMemory()">Jogar de novo</button>
+      <div class="mem-win-hint">toque fora para voltar e ver as cartas 💜</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== REASONS ===== -->
+<section id="reasons" data-bg="#13131f">
+  <div class="tag reveal">♥ MOTIVOS INFINITOS</div>
+  <h1 class="reveal">Por que eu <span>te quero</span></h1>
+  <div class="reasons-list" id="reasonsList">
+    <div class="reason-item reveal-x"><span class="icon">😂</span><span>Seu jeito de rir de coisas aleatórias</span></div>
+    <div class="reason-item reveal-x"><span class="icon">🧠</span><span>A forma que você pensa e se impõe</span></div>
+    <div class="reason-item reveal-x"><span class="icon">🫂</span><span>Seu abraço e seus beijos</span></div>
+    <div class="reason-item reveal-x"><span class="icon">✨</span><span>Sua energia e paz que ilumina o ambiente</span></div>
+    <div class="reason-item reveal-x"><span class="icon">🎯</span><span>Sua determinação em tudo que faz</span></div>
+    <div class="reason-item reveal-x"><span class="icon">🌙</span><span>Nossas conversas que nunca acabam</span></div>
+  </div>
+  <div class="reasons-footer reveal">e mil outros que nem caberiam aqui... <span class="heart-pulse">💕</span></div>
+</section>
+
+<!-- ===== SCRATCH ===== -->
+<section id="scratch" data-bg="#0e0e18">
+  <h1 class="reveal">Raspe e descubra <span>o que você é pra mim</span></h1>
+  <p class="subtitle reveal">Arrasta o dedo nas cartinhas para revelar cada palavra ✨</p>
+  <div class="scratch-progress reveal" id="scratchProgress">
+    <div class="scratch-pill"></div><div class="scratch-pill"></div>
+    <div class="scratch-pill"></div><div class="scratch-pill"></div>
+  </div>
+  <div class="scratch-grid reveal-zoom" id="scratchGrid"></div>
+  <p class="scratch-hint reveal">dica: Tem segredo embaixo 💌</p>
+</section>
+
+<!-- ===== MUSIC ===== -->
+<section id="music" data-bg="#1a1a2e">
+  <div class="header-center">
+    <div class="tag reveal">💌 NOSSO MOMENTO</div>
+    <h1 class="reveal">Se for pra escolher, <span>eu escolho você</span></h1>
+    <p class="subtitle reveal">em todas as versões da vida, em todos os dias e em todos os futuros</p>
+  </div>
+  <div class="promise-card reveal-zoom">
+    <div class="promise-title">O meu lugar favorito é qualquer lugar que tenha você;</div><br>
+    <div class="promise-list">
+      <div class="promise-item">Não quero te perder nunca;</div><br>
+      <div class="promise-item">Te admiro tanto que tu não tem ideia, fico boba em ver;</div><br>
+      <div class="promise-item">Te escolher todos os dias é a maior certeza;</div><br>
+    </div>
+    <div class="promise-note">❤️Eu te amo muito!❤️</div>
+  </div>
+</section>
+
+<!-- ===== WHY YOU ===== -->
+<section id="whyyou" data-bg="#13131f">
+
+  <h1 class="reveal">Você não esperava <span>um site inteiro</span>, né?</h1>
+  <p class="subtitle reveal">eu também não esperava chegar nesse nível de emoção, mas claramente você mexeu comigo de um jeito sério</p>
+  <div class="why-note reveal-zoom" id="whyCards">
+    <div class="why-note-row">
+      <span class="why-note-emoji">💻</span>
+      <p>era pra ser só uma mensagem bonitinha... aí me empolguei e quando vi já tava fazendo isso tudo kkkkk (merece muito)</p>
+    </div>
+    <div class="why-note-row">
+      <span class="why-note-emoji">🥹</span>
+      <p>Então se isso parecer um tantinho emocionado, quero dizer que, sim.</p>
+    </div>
+    <div class="why-note-row">
+      <span class="why-note-emoji">💜</span>
+      <p>resumindo bem: quero poder ter sempre você ao meu lado, e desculpa qualquer incerteza ou medo que eu possa deixar, mas quero muito viver uma vida contigo e farei o possivel.</p>
+    </div>
+    <div class="why-note-sign">Eu te amo muito, muito mesmo</div>
+  </div>
+</section>
+
+<!-- ===== GALLERY ===== -->
+<section id="gallery" data-bg="#0e0e18">
+  <div class="header-center">
+
+    <h1 class="reveal">Momentos que <span>guardo aqui</span></h1>
+
+  </div>
+  <div class="gallery-grid" id="galleryGrid">
+    <div class="polaroid fixed-photo has-image reveal-zoom" data-rot="-3">
+      <img class="photo-slot" src="img/primeiro dia.jpeg" alt="Dia em que nos conhecemos" style="display:block">
+      <div class="cam">📷</div>
+      <div class="lbl">Dia em que nos conhecemos ✨</div>
+    </div>
+    <div class="polaroid fixed-photo has-image reveal-zoom" data-rot="3">
+      <img class="photo-slot" src="img/rindo.jpeg" alt="Sempre rindo" style="display:block">
+      <div class="cam">📷</div>
+      <div class="lbl">Sempre rindo 😂</div>
+    </div>
+    <div class="polaroid fixed-photo has-image reveal-zoom" data-rot="-2">
+      <img class="photo-slot" src="img/só ela.jpeg" alt="Você linda demais" style="display:block">
+      <div class="cam">📷</div>
+      <div class="lbl">Você linda demais 🌸</div>
+    </div>
+    <div class="polaroid fixed-photo has-image reveal-zoom" data-rot="2">
+      <img class="photo-slot" src="img/eu e ela.jpeg" alt="Nossa vibe" style="display:block">
+      <div class="cam">📷</div>
+      <div class="lbl">Nossa vibe ⭐</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== BRIDGE ===== -->
+<section id="bridge" data-bg="#000000">
+  <div class="bridge-stage">
+    <div class="bridge-modal reveal-zoom">
+      <p class="quote">Depois de tudo isso...<br/>só falta uma coisinha não acha? 💜</p>
+      <p class="bridge-hint">rola mais um pouquinho...</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ASK ===== -->
+<section id="ask" data-bg="#150a1e">
+  <svg class="ring-bg" viewBox="0 0 400 600" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="200" cy="300" r="180" stroke="#7c3aed" stroke-width="0.5" fill="none" opacity="0.3"/>
+    <circle cx="200" cy="300" r="240" stroke="#ec4899" stroke-width="0.5" fill="none" opacity="0.2"/>
+    <circle cx="200" cy="300" r="300" stroke="#7c3aed" stroke-width="0.5" fill="none" opacity="0.15"/>
+  </svg>
+  <svg class="big-heart-pink reveal-zoom" id="bigHeart" viewBox="0 0 100 90" xmlns="http://www.w3.org/2000/svg">
+    <path d="M50 85 C 50 85, 8 55, 8 30 C 8 15, 20 5, 32 5 C 42 5, 48 12, 50 18 C 52 12, 58 5, 68 5 C 80 5, 92 15, 92 30 C 92 55, 50 85, 50 85 Z" fill="#ec4899"/>
+  </svg>
+  <h1 class="reveal">Aceita namorar <span>comigo?</span></h1>
+  <h3 class="quote reveal">Não vale dizer que não</h3>
+  <div class="ask-buttons reveal">
+    <button class="yes-btn" id="yesBtn">SIM 💜</button>
+    <button class="no-btn" id="noBtn">não</button>
+  </div>
+</section>
+
+<div class="yes-alert" id="yesAlert" aria-hidden="true">
+  <div class="yes-alert-box">
+    <div class="yes-alert-title">
+      <span>PERA</span>
+      <span>PERA</span>
+      <span>PERA</span>
+    </div>
+    <p>antes de terminar... tem mais uma coisinha</p>
+  </div>
+</div>
+
+<!-- ===== FINALE ===== -->
+<section id="finale-yes" data-bg="#0a0514">
+  <div class="surprise-frame">
+    <h1>Tenho uma <span>surpresinha</span><br/>pra você pessoalmente</h1>
+    <p>mas você só vai descobrir na hora certa... por enquanto, sua missão é escolher um lado kkkkk</p>
+    <div class="surprise-choices">
+      <button class="surprise-choice" data-side="esquerdo">⬅️ esquerdo</button>
+      <button class="surprise-choice" data-side="direito">➡️ direito</button>
+    </div>
+    <div class="surprise-note">Agora me diz sua escolha KKKKK</div>
+  </div>
+</section>
+
+<div class="love-letter" id="loveLetter" aria-hidden="true">
+  <div class="love-letter-box">
+    <h2>AGORA ESTAMOS NAMORANDO!!</h2>
+    <p>Eu quis fazer tudo isso porque você é muito especial pra mim, e você sabe que qualquer coisinha eu gosto de estar criando kkkkkkk e como assim eu não faria para um mometno tão significativo pra mim</p>
+    <p>Você me deixa boba, feliz, emocionada e com uma vontade de estar contigo em todos os momentos.</p>
+    <p>Eu te amo de um jeito lindo, leve e muito verdadeiro. E acho que a gente tem um longo caminho para traçarmos juntas e sempre a cada dia irei fazzer o possivel para sempre estarmos juntas, até pq temos ai pelo menos 40 anos pela frente kkkkk</p>
+    <p>E isso é só um pedacinho do quanto eu sou apaixonada por você ❤️</p>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
