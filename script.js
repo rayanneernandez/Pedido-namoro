@@ -205,7 +205,6 @@ if (bridgeSection) {
 /* ============== HERO TO MEMORY BOAT TRANSITION ============== */
 const liteMobileTransitions = window.matchMedia('(max-width: 768px)').matches;
 (function() {
-  if (liteMobileTransitions) return;
   const source = document.querySelector('#boat svg');
   const hero = document.getElementById('hero');
   const boat = document.getElementById('boat');
@@ -220,25 +219,25 @@ const liteMobileTransitions = window.matchMedia('(max-width: 768px)').matches;
   gsap.set(overlay, { opacity: 0 });
   gsap.set(overlayBoat, { scale: 1, rotation: 0, opacity: 1, filter: 'blur(0px)' });
 
+  const boatTween = liteMobileTransitions
+    ? { rotation: 180, scale: 4.2, opacity: 0.22, filter: 'blur(1.5px)', duration: 0.52 }
+    : { rotation: 540, scale: 9, opacity: 0.08, filter: 'blur(4px)', duration: 0.72 };
+
   gsap.timeline({
     scrollTrigger: {
       trigger: hero,
-      start: '65% top',
+      start: liteMobileTransitions ? '72% top' : '65% top',
       end: 'bottom top',
-      scrub: 1.2
+      scrub: liteMobileTransitions ? 0.55 : 1.2
     }
   })
-    .to(boat, { opacity: 0, duration: 0.08, ease: 'none' }, 0)
-    .to(overlay, { opacity: 1, duration: 0.08, ease: 'none' }, 0)
+    .to(boat, { opacity: 0, duration: 0.06, ease: 'none' }, 0)
+    .to(overlay, { opacity: 1, duration: 0.06, ease: 'none' }, 0)
     .to(overlayBoat, {
-      rotation: 540,
-      scale: 9,
-      opacity: 0.08,
-      filter: 'blur(4px)',
-      duration: 0.72,
+      ...boatTween,
       ease: 'none'
-    }, 0.08)
-    .to(overlay, { opacity: 0, duration: 0.2, ease: 'none' }, 0.8);
+    }, 0.06)
+    .to(overlay, { opacity: 0, duration: liteMobileTransitions ? 0.1 : 0.2, ease: 'none' }, liteMobileTransitions ? 0.58 : 0.8);
 })();
 
 /* ============== MEMORY TO REASONS WIPE ============== */

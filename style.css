@@ -467,7 +467,7 @@ body.bridge-active .floating-hearts { opacity: 0; transition: opacity 0.25s ease
   pointer-events: none;
   z-index: 1002;
   overflow: hidden;
-  background: radial-gradient(ellipse at top, #0e1628 0%, #0a0f1e 70%, #0e0e18 100%);
+  background: radial-gradient(ellipse at top, rgba(14,22,40,0.82) 0%, rgba(10,15,30,0.38) 62%, rgba(14,14,24,0.1) 100%);
 }
 .boat-transition svg {
   width: clamp(120px, 26vw, 170px);
@@ -690,11 +690,18 @@ body.bridge-active .floating-hearts { opacity: 0; transition: opacity 0.25s ease
 
 /* ============== MOBILE RESPONSIVENESS ============== */
 @media (max-width: 768px) {
-  .boat-transition,
   .frame-wipe,
   .frame-portal,
   .frame-heart,
   .frame-bloom { display: none !important; }
+
+  .boat-transition {
+    background: radial-gradient(ellipse at center, rgba(14,22,40,0.26) 0%, rgba(10,15,30,0.08) 55%, transparent 100%);
+  }
+  .boat-transition svg {
+    width: clamp(96px, 30vw, 138px);
+    filter: drop-shadow(0 8px 20px rgba(124,58,237,0.22));
+  }
 
   #memory {
     background:
