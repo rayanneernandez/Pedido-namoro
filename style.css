@@ -689,6 +689,21 @@ body.bridge-active .floating-hearts { opacity: 0; transition: opacity 0.25s ease
 .cta-btn:hover .cta-arrow { transform: translateX(4px); }
 
 /* ============== MOBILE RESPONSIVENESS ============== */
+@media (max-width: 768px) {
+  .boat-transition,
+  .frame-wipe,
+  .frame-portal,
+  .frame-heart,
+  .frame-bloom { display: none !important; }
+
+  #memory {
+    background:
+      radial-gradient(circle at 50% 18%, rgba(124,58,237,0.18), transparent 34%),
+      radial-gradient(circle at 50% 56%, rgba(34,211,238,0.08), transparent 40%),
+      linear-gradient(180deg, #111b33 0%, #0d1530 100%);
+  }
+}
+
 @media (max-width: 380px) {
   section { padding: 50px 18px 70px; }
   h1 { font-size: clamp(28px, 8vw, 40px) !important; }

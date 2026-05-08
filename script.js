@@ -203,7 +203,9 @@ if (bridgeSection) {
 /* ============== HERO FIXED VIA CSS STICKY ============== */
 
 /* ============== HERO TO MEMORY BOAT TRANSITION ============== */
+const liteMobileTransitions = window.matchMedia('(max-width: 768px)').matches;
 (function() {
+  if (liteMobileTransitions) return;
   const source = document.querySelector('#boat svg');
   const hero = document.getElementById('hero');
   const boat = document.getElementById('boat');
@@ -241,6 +243,7 @@ if (bridgeSection) {
 
 /* ============== MEMORY TO REASONS WIPE ============== */
 (function() {
+  if (liteMobileTransitions) return;
   const memory = document.getElementById('memory');
   const reasons = document.getElementById('reasons');
   if (!memory || !reasons) return;
@@ -272,6 +275,7 @@ if (bridgeSection) {
 
 /* ============== REASONS TO SCRATCH PORTAL ============== */
 (function() {
+  if (liteMobileTransitions) return;
   const reasons = document.getElementById('reasons');
   const scratch = document.getElementById('scratch');
   if (!reasons || !scratch) return;
@@ -303,6 +307,7 @@ if (bridgeSection) {
 
 /* ============== SCRATCH TO MUSIC HEART TRANSITION ============== */
 (function() {
+  if (liteMobileTransitions) return;
   const scratch = document.getElementById('scratch');
   const music = document.getElementById('music');
   if (!scratch || !music) return;
@@ -333,6 +338,7 @@ if (bridgeSection) {
 
 /* ============== MUSIC TO WHYYOU BLOOM TRANSITION ============== */
 (function() {
+  if (liteMobileTransitions) return;
   const music = document.getElementById('music');
   const whyyou = document.getElementById('whyyou');
   if (!music || !whyyou) return;
@@ -540,7 +546,6 @@ function initScratchCanvases() {
         // Animate the revealed content
         const content = card.querySelector('.scratch-content');
         gsap.fromTo(content, { scale: 0.9 }, { scale: 1, duration: 0.5, ease: 'back.out(1.7)' });
-        for (let i = 0; i < 8; i++) setTimeout(launchHeart, i*40);
         if (navigator.vibrate) navigator.vibrate(60);
         if (document.querySelectorAll('#scratchProgress .scratch-pill.done').length === scratchData.length) {
           setTimeout(() => confettiBurst(50), 200);
