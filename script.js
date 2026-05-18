@@ -241,35 +241,7 @@ const liteMobileTransitions = window.matchMedia('(max-width: 768px)').matches;
 })();
 
 /* ============== MEMORY TO REASONS WIPE ============== */
-(function() {
-  const memory = document.getElementById('memory');
-  const reasons = document.getElementById('reasons');
-  if (!memory || !reasons) return;
-
-  const wipe = document.createElement('div');
-  wipe.className = 'frame-wipe';
-  wipe.innerHTML = '<div class="frame-wipe-core"></div>';
-  document.body.appendChild(wipe);
-
-  const core = wipe.querySelector('.frame-wipe-core');
-
-  gsap.timeline({
-    scrollTrigger: {
-      trigger: reasons,
-      start: liteMobileTransitions ? 'top 96%' : 'top 92%',
-      end: liteMobileTransitions ? 'top 38%' : 'top 18%',
-      scrub: liteMobileTransitions ? 0.45 : 1.1
-    }
-  })
-    .to(wipe, { opacity: 1, duration: 0.18, ease: 'none' }, 0)
-    .fromTo(core,
-      liteMobileTransitions ? { scale: 0.24, rotation: 0, opacity: 0.55, filter: 'blur(1px)' } : { scale: 0.18, rotation: 0, opacity: 0.78, filter: 'blur(2px)' },
-      liteMobileTransitions ? { scale: 4.2, rotation: 10, opacity: 0.82, filter: 'blur(8px)', duration: 0.34, ease: 'none' } : { scale: 8, rotation: 24, opacity: 1, filter: 'blur(18px)', duration: 0.62, ease: 'none' },
-      0.08
-    )
-    .to(core, { scale: 12, filter: 'blur(28px)', duration: 0.18, ease: 'none' }, 0.7)
-    .to(wipe, { opacity: 0, duration: 0.22, ease: 'none' }, 0.78);
-})();
+/* transição removida a pedido */
 
 /* ============== REASONS TO SCRATCH PORTAL ============== */
 (function() {
