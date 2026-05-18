@@ -242,7 +242,6 @@ const liteMobileTransitions = window.matchMedia('(max-width: 768px)').matches;
 
 /* ============== MEMORY TO REASONS WIPE ============== */
 (function() {
-  if (liteMobileTransitions) return;
   const memory = document.getElementById('memory');
   const reasons = document.getElementById('reasons');
   if (!memory || !reasons) return;
@@ -257,15 +256,15 @@ const liteMobileTransitions = window.matchMedia('(max-width: 768px)').matches;
   gsap.timeline({
     scrollTrigger: {
       trigger: reasons,
-      start: 'top 92%',
-      end: 'top 18%',
-      scrub: 1.1
+      start: liteMobileTransitions ? 'top 96%' : 'top 92%',
+      end: liteMobileTransitions ? 'top 38%' : 'top 18%',
+      scrub: liteMobileTransitions ? 0.45 : 1.1
     }
   })
     .to(wipe, { opacity: 1, duration: 0.18, ease: 'none' }, 0)
     .fromTo(core,
-      { scale: 0.18, rotation: 0, opacity: 0.78, filter: 'blur(2px)' },
-      { scale: 8, rotation: 24, opacity: 1, filter: 'blur(18px)', duration: 0.62, ease: 'none' },
+      liteMobileTransitions ? { scale: 0.24, rotation: 0, opacity: 0.55, filter: 'blur(1px)' } : { scale: 0.18, rotation: 0, opacity: 0.78, filter: 'blur(2px)' },
+      liteMobileTransitions ? { scale: 4.2, rotation: 10, opacity: 0.82, filter: 'blur(8px)', duration: 0.34, ease: 'none' } : { scale: 8, rotation: 24, opacity: 1, filter: 'blur(18px)', duration: 0.62, ease: 'none' },
       0.08
     )
     .to(core, { scale: 12, filter: 'blur(28px)', duration: 0.18, ease: 'none' }, 0.7)
@@ -274,7 +273,6 @@ const liteMobileTransitions = window.matchMedia('(max-width: 768px)').matches;
 
 /* ============== REASONS TO SCRATCH PORTAL ============== */
 (function() {
-  if (liteMobileTransitions) return;
   const reasons = document.getElementById('reasons');
   const scratch = document.getElementById('scratch');
   if (!reasons || !scratch) return;
@@ -289,15 +287,15 @@ const liteMobileTransitions = window.matchMedia('(max-width: 768px)').matches;
   gsap.timeline({
     scrollTrigger: {
       trigger: scratch,
-      start: 'top 95%',
-      end: 'top 22%',
-      scrub: 1.1
+      start: liteMobileTransitions ? 'top 97%' : 'top 95%',
+      end: liteMobileTransitions ? 'top 40%' : 'top 22%',
+      scrub: liteMobileTransitions ? 0.42 : 1.1
     }
   })
     .to(portal, { opacity: 1, duration: 0.12, ease: 'none' }, 0)
     .fromTo(core,
-      { scaleX: 0.08, scaleY: 0.7, opacity: 0.9, filter: 'blur(1px)' },
-      { scaleX: 1.35, scaleY: 12, opacity: 1, filter: 'blur(14px)', duration: 0.66, ease: 'none' },
+      liteMobileTransitions ? { scaleX: 0.16, scaleY: 0.7, opacity: 0.62, filter: 'blur(0.5px)' } : { scaleX: 0.08, scaleY: 0.7, opacity: 0.9, filter: 'blur(1px)' },
+      liteMobileTransitions ? { scaleX: 1.08, scaleY: 6.4, opacity: 0.82, filter: 'blur(6px)', duration: 0.34, ease: 'none' } : { scaleX: 1.35, scaleY: 12, opacity: 1, filter: 'blur(14px)', duration: 0.66, ease: 'none' },
       0.08
     )
     .to(core, { opacity: 0.25, duration: 0.14, ease: 'none' }, 0.74)
@@ -306,7 +304,6 @@ const liteMobileTransitions = window.matchMedia('(max-width: 768px)').matches;
 
 /* ============== SCRATCH TO MUSIC HEART TRANSITION ============== */
 (function() {
-  if (liteMobileTransitions) return;
   const scratch = document.getElementById('scratch');
   const music = document.getElementById('music');
   if (!scratch || !music) return;
@@ -321,15 +318,15 @@ const liteMobileTransitions = window.matchMedia('(max-width: 768px)').matches;
   gsap.timeline({
     scrollTrigger: {
       trigger: music,
-      start: 'top 96%',
-      end: 'top 24%',
-      scrub: 1.05
+      start: liteMobileTransitions ? 'top 97%' : 'top 96%',
+      end: liteMobileTransitions ? 'top 42%' : 'top 24%',
+      scrub: liteMobileTransitions ? 0.42 : 1.05
     }
   })
     .to(heart, { opacity: 1, duration: 0.08, ease: 'none' }, 0)
     .fromTo(core,
-      { scale: 0.2, rotation: 0, opacity: 0.95, filter: 'blur(0.5px)' },
-      { scale: 10.5, rotation: -12, opacity: 1, filter: 'blur(10px)', duration: 0.66, ease: 'none' },
+      liteMobileTransitions ? { scale: 0.28, rotation: 0, opacity: 0.72, filter: 'blur(0.2px)' } : { scale: 0.2, rotation: 0, opacity: 0.95, filter: 'blur(0.5px)' },
+      liteMobileTransitions ? { scale: 5.4, rotation: -6, opacity: 0.86, filter: 'blur(5px)', duration: 0.34, ease: 'none' } : { scale: 10.5, rotation: -12, opacity: 1, filter: 'blur(10px)', duration: 0.66, ease: 'none' },
       0.06
     )
     .to(heart, { opacity: 0, duration: 0.18, ease: 'none' }, 0.78);
@@ -337,7 +334,6 @@ const liteMobileTransitions = window.matchMedia('(max-width: 768px)').matches;
 
 /* ============== MUSIC TO WHYYOU BLOOM TRANSITION ============== */
 (function() {
-  if (liteMobileTransitions) return;
   const music = document.getElementById('music');
   const whyyou = document.getElementById('whyyou');
   if (!music || !whyyou) return;

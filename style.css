@@ -690,11 +690,6 @@ body.bridge-active .floating-hearts { opacity: 0; transition: opacity 0.25s ease
 
 /* ============== MOBILE RESPONSIVENESS ============== */
 @media (max-width: 768px) {
-  .frame-wipe,
-  .frame-portal,
-  .frame-heart,
-  .frame-bloom { display: none !important; }
-
   .boat-transition {
     background: radial-gradient(ellipse at center, rgba(14,22,40,0.26) 0%, rgba(10,15,30,0.08) 55%, transparent 100%);
   }
@@ -702,6 +697,14 @@ body.bridge-active .floating-hearts { opacity: 0; transition: opacity 0.25s ease
     width: clamp(96px, 30vw, 138px);
     filter: drop-shadow(0 8px 20px rgba(124,58,237,0.22));
   }
+  .frame-wipe { background: radial-gradient(circle at center, rgba(124,58,237,0.12) 0%, rgba(10,15,30,0.66) 34%, rgba(2,3,10,0.82) 100%); }
+  .frame-wipe-core { width: 88px; box-shadow: 0 0 28px rgba(168,85,247,0.28), 0 0 64px rgba(34,211,238,0.12); filter: blur(1px); }
+  .frame-portal { background: rgba(5,8,20,0.62); }
+  .frame-portal-core { height: 56px; box-shadow: 0 0 20px rgba(244,114,182,0.26), 0 0 44px rgba(168,85,247,0.16); }
+  .frame-heart { background: radial-gradient(circle at center, rgba(236,72,153,0.1) 0%, rgba(124,58,237,0.12) 26%, rgba(5,8,20,0.72) 100%); }
+  .frame-heart-core { font-size: 58px; text-shadow: 0 0 16px rgba(244,114,182,0.45), 0 0 34px rgba(168,85,247,0.22); }
+  .frame-bloom { background: radial-gradient(circle at center, rgba(244,114,182,0.08) 0%, rgba(124,58,237,0.1) 24%, rgba(5,8,20,0.68) 100%); }
+  .frame-bloom-heart { font-size: clamp(34px, 9vw, 58px); text-shadow: 0 0 16px rgba(244,114,182,0.4), 0 0 32px rgba(168,85,247,0.2); }
 
   #memory {
     background:
